@@ -74,8 +74,8 @@ networks:
 · Modificación de los archivos de configuración del apache:
 ### En el volumen conf_apache, asociado a la ruta /usr/local/apache2/conf del contenedor, disponemos del archivo httpd.conf en el cual, descomentamos la línea del include:
 
-  Virtual hosts
-  Include conf/extra/httpd-vhosts.conf
+Virtual hosts
+Include conf/extra/httpd-vhosts.conf
 ## Una vez descomentada la anterior línea, entramos en el directorio extra abrimos el archivo httpd-vhosts.conf donde escribimos las siguientes líneas:
 <VirtualHost *:80>
     ServerAdmin webmaster@dummy-host.example.com
