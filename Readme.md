@@ -14,7 +14,7 @@
       - apache_conf:/usr/local/apache2/conf
 ·Asignamos una ip fija (10.1.0.4), dentro de la red br02 creada previamente.
 ·Asociamos los directorios, htdocs y conf a sendos volumenes, los cuales fueron creados previamente.
-·Creación del contenedor del cliente:
+## Creación del contenedor del cliente:
 ### apache_cliente:
     image: kasmweb/desktop:1.10.0-rolling
     networks:
@@ -49,26 +49,26 @@ networks:
 · Con el anterior codigo, indicamos que los volumenes asignados a los contenedores los busque en el exterior en vez de crearlos, y lo mismo acontece con la red utilizada para la conexión (br02).
 ## Modificación del archivo de configuración del dns:
 ### En el volumen conf_bind, asociado a la ruta /etc/bind del contenedor, encontramos el archivo db.example.com con el siguiente codigo:
-;
-; BIND data file for example.com
-;
-$TTL	604800
-@	IN	SOA	example.com. root.example.com. (
+  ;
+  ; BIND data file for example.com
+  ;
+  $TTL	604800
+  @	IN	SOA	example.com. root.example.com. (
 			      2		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
 			 604800 )	; Negative Cache TTL
-;
-@	IN	NS	ns.example.com.
-@	IN	A	10.1.0.40
-@	IN	AAAA	::1
-ns  IN  A   10.1.0.40
-ggg	IN	A	10.1.0.4
-example	IN 	A 	10.1.0.4
-ggg IN	TXT	"Aqui va un token de seguridad"
-primera	IN	CNAME	example
-segunda	IN	CNAME	example
+  ;
+  @	IN	NS	ns.example.com.
+  @	IN	A	10.1.0.40
+  @	IN	AAAA	::1
+  ns  IN  A   10.1.0.40
+  ggg	IN	A	10.1.0.4
+  example	IN 	A 	10.1.0.4
+  ggg IN	TXT	"Aqui va un token de seguridad"
+  primera	IN	CNAME	example
+  segunda	IN	CNAME	example
 
 · Donde se añadieron dos CNAME, para que cada una de las direcciones apunte al servidor apache (10.1.0.4). Luego será el servidor apache el que decida que index devolver.
 · Modificación de los archivos de configuración del apache:
