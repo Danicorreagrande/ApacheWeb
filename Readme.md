@@ -72,7 +72,7 @@ networks:
 
 · Donde se añadieron dos CNAME, para que cada una de las direcciones apunte al servidor apache (10.1.0.4). Luego será el servidor apache el que decida que index devolver.
 · Modificación de los archivos de configuración del apache:
-· En el volumen conf_apache, asociado a la ruta /usr/local/apache2/conf del contenedor, disponemos del archivo httpd.conf en el cual, descomentamos la línea del include:
+### En el volumen conf_apache, asociado a la ruta /usr/local/apache2/conf del contenedor, disponemos del archivo httpd.conf en el cual, descomentamos la línea del include:
 
 · Virtual hosts
 · Include conf/extra/httpd-vhosts.conf
