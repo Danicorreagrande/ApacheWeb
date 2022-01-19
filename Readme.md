@@ -33,7 +33,7 @@
 · Con el apartado environment, permitimos la conexión con el servidor, es muy importante con VNC_PW asignarle la password.
 · Volumenes y conexiones de red:
 ### volumes:
-  apache_index:
+   apache_index:
     external: true
     name: apache-data-practica
   apache_conf:
