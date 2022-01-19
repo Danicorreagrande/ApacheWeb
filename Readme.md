@@ -12,7 +12,7 @@
     volumes:
       - apache_index:/usr/local/apache2/htdocs
       - apache_conf:/usr/local/apache2/conf
-### Asignamos una ip fija (10.1.0.4), dentro de la red br02 creada previamente.
+· Asignamos una ip fija (10.1.0.4), dentro de la red br02 creada previamente.
 ### Asociamos los directorios, htdocs y conf a sendos volumenes, los cuales fueron creados previamente.
 ### Creación del contenedor del cliente:
 ### apache_cliente:
@@ -27,6 +27,7 @@
       - 6901:6901
     dns:
       - 10.1.0.40
+
 ### El contenedor dispondra de una ip dinamica, dentro de la red br02 creada previamente.
 ### El servidor dns del cliente se encuentra en 10.1.0.40.
 ### Con el apartado environment, permitimos la conexión con el servidor, es muy importante con VNC_PW asignarle la password.
