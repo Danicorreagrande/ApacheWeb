@@ -1,6 +1,6 @@
-Práctica servidor web
-Elementos importantes del docker-compose.yml
-Creación del contenedor con el servidor apache:
+# Práctica servidor web
+# Elementos  docker-compose.yml
+# Creación contenedor con el servidor apache:
 apache_web:
     container_name: apache_server_practica
     image: httpd
