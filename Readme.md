@@ -31,9 +31,9 @@
 · El contenedor dispondra de una ip dinamica, dentro de la red br02 creada previamente.
 · El servidor dns del cliente se encuentra en 10.1.0.40.
 · Con el apartado environment, permitimos la conexión con el servidor, es muy importante con VNC_PW asignarle la password.
-· Volumenes y conexiones de red:
+## Volumenes y conexiones de red:
 ### volumes:
-   apache_index:
+  apache_index:
     external: true
     name: apache-data-practica
   apache_conf:
@@ -47,7 +47,7 @@ networks:
     external: true
 
 · Con el anterior codigo, indicamos que los volumenes asignados a los contenedores los busque en el exterior en vez de crearlos, y lo mismo acontece con la red utilizada para la conexión (br02).
-· Modificación del archivo de configuración del dns:
+## Modificación del archivo de configuración del dns:
 ### En el volumen conf_bind, asociado a la ruta /etc/bind del contenedor, encontramos el archivo db.example.com con el siguiente codigo:
 ;
 ; BIND data file for example.com
@@ -76,7 +76,7 @@ segunda	IN	CNAME	example
 
 · Virtual hosts
 · Include conf/extra/httpd-vhosts.conf
-### Una vez descomentada la anterior línea, entramos en el directorio extra abrimos el archivo httpd-vhosts.conf donde escribimos las siguientes líneas:
+## Una vez descomentada la anterior línea, entramos en el directorio extra abrimos el archivo httpd-vhosts.conf donde escribimos las siguientes líneas:
 <VirtualHost *:80>
     ServerAdmin webmaster@dummy-host.example.com
     DocumentRoot "/usr/local/apache2/htdocs/primera"
