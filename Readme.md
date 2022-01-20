@@ -2,49 +2,45 @@
 ## Elementos  docker-compose.yml
 ## Creación contenedor con el servidor apache:
 ### apache_web:
-    container_name: apache_server_practica
-    image: httpd
+    container_name: apache_server
+    image: httpd:latest
     networks:
-      br02:
-        ipv4_address: 10.1.0.4
+      net1:
+        ipv4_address: 10.0.0.10
     ports:
       - 80:80
     volumes:
-      - apache_index:/usr/local/apache2/htdocs
-      - apache_conf:/usr/local/apache2/conf
+      - apache2:/usr/local/apache2
 ·Asignamos una ip fija (10.1.0.4), dentro de la red br02 creada previamente.
 ·Asociamos los directorios, htdocs y conf a sendos volumenes, los cuales fueron creados previamente.
 ## Creación del contenedor del cliente:
 ### apache_cliente:
+    container_name: apache_cliente
     image: kasmweb/desktop:1.10.0-rolling
     networks:
-      br02:
-    stdin_open: true  # docker run -i
-    tty: true         # docker run -t
-    environment:
-      VNC_PW: password
+      net1:
+        ipv4_address: 10.0.0.3
     ports:
       - 6901:6901
     dns:
-      - 10.1.0.40
+      - 10.0.0.2 
+    environment:
+      - VNC_PW=13579.
 
 · El contenedor dispondra de una ip dinamica, dentro de la red br02 creada previamente.
 · El servidor dns del cliente se encuentra en 10.1.0.40.
 · Con el apartado environment, permitimos la conexión con el servidor, es muy importante con VNC_PW asignarle la password.
 ## Volumenes y conexiones de red:
 ### volumes:
-  apache_index:
+  bind:
     external: true
-    name: apache-data-practica
-  apache_conf:
+  apache2:
     external: true
-    name: apache-conf-practica
-  conf:
-    external: true
-    name: dns-main_conf
-networks: 
-  br02:
-    external: true
+networks:
+  net1:
+    ipam: 
+      config:
+        - subnet: 10.0.0.0/24
 
 · Con el anterior codigo, indicamos que los volumenes asignados a los contenedores los busque en el exterior en vez de crearlos, y lo mismo acontece con la red utilizada para la conexión (br02).
 ## Modificación del archivo de configuración del dns:
